@@ -15,9 +15,9 @@ def login_user(request):
 
             try:
                 student = Student.objects.get(user=request.user)
-                return redirect('core:student_main')
+                return redirect('student_main')
             except:
-                return redirect('core:lecturer_main')
+                return redirect('lecturer_main')
         else:
             return render(request, 'accounts/login.html', {'error_message': 'Invalid login credentials'})
     return render(request, 'accounts/login.html')
@@ -47,6 +47,6 @@ def register_user(request):
 
 def logout_user(request):
     logout(request)
-    return render(request, 'login.html')
+    return redirect('index')
 
 

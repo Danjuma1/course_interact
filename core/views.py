@@ -35,10 +35,10 @@ def student_detail(request, course_id):
             message.save()
             try:
                 student = Student.objects.get(user=request.user)
-                return redirect('core:student_detail', course_id)
+                return redirect('student_detail', course_id)
 
             except:
-                return redirect('core:lecturer_detail', course.id)
+                return redirect('lecturer_detail', course.id)
 
     else:
         form = MessageForm()
@@ -114,7 +114,7 @@ def add_notification(request, course_id):
         notification = form.save(commit=False)
         notification.course = course
         notification.save()
-        return redirect('core:lecturer_detail', course.id)
+        return redirect('lecturer_detail', course.id)
 
     return render(request, 'core/add_notification.html', {'course': course, 'form': form})
 
